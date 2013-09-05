@@ -129,7 +129,10 @@ int beep1[]={1530,250};
 -(void)barcodeData:(NSString *)barcode type:(int)type {
 	NSLog(@"[LINEA] Linea barcodeData");
 
-	[self fireEvent:@"barcodeData" withObject:@{@"barcode": barcode}];
+	[self fireEvent:@"scannedBarcode" withObject:@{
+        @"barcode": barcode,
+        @"barcodeType": [dtdev barcodeType2Text:type]
+     }];
 }
 
 -(void)magneticCardData:(NSString *)track1 track2:(NSString *)track2 track3:(NSString *)track3 {
