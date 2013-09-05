@@ -35,6 +35,7 @@ Methods
 
 ### connect()
 ### disconnect()
+#### getBatteryLevel()
 
 Events
 ------
