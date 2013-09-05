@@ -114,13 +114,13 @@ int beep1[]={1530,250};
             break;
 		case CONN_CONNECTED:
             status = @"CONNECTED";
-            
+                        
             [dtdev barcodeSetScanMode:1 error:nil];
             [dtdev barcodeSetScanBeep:TRUE volume:100 beepData:beep1 length:sizeof(beep1) error:nil];
             
             [dtdev msEnable:nil];
             
-			break;
+            break;
 	}
     
     [self fireEvent:@"connectionStateChange" withObject:@{@"status": status}];
@@ -137,8 +137,31 @@ int beep1[]={1530,250};
 
 -(void)magneticCardData:(NSString *)track1 track2:(NSString *)track2 track3:(NSString *)track3 {
     NSLog(@"[LINEA] Linea magneticCardData");
-    NSString *tracks = [NSString stringWithFormat:@"%@%@%@", track1, track2, track3];
-    [self fireEvent:@"magneticCardData" withObject:tracks withSource:tracks];
+    
+    NSString *cardHolderName = @"";
+    NSString *accountNumber = @"";
+    NSString *expirationMonth = @"";
+    NSString *expirationYear = @"";
+    
+    NSDictionary *card=[dtdev msProcessFinancialCard:track1 track2:track2];
+	if(card)
+	{
+		cardHolderName = [NSString stringWithFormat:@"%@", [card valueForKey:@"cardholderName"]];
+        accountNumber = [NSString stringWithFormat:@"%@", [card valueForKey:@"accountNumber"]];
+        expirationMonth = [NSString stringWithFormat:@"%@", [card valueForKey:@"expirationMonth"]];
+        expirationYear = [NSString stringWithFormat:@"%@", [card valueForKey:@"expirationYear"]];
+	}
+    
+    [self fireEvent:@"magneticCardSwiped" withObject:@{
+        @"track1": track1,
+        @"track2": track2,
+        @"track3": track3,
+     
+        @"cardHolderName": cardHolderName,
+        @"accountNumber": accountNumber,
+        @"expirationMonth": expirationMonth,
+        @"expirationYear": expirationYear
+    }];
 }
 
 //public properties
