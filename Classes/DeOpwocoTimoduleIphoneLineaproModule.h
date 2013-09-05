@@ -9,9 +9,6 @@
 
 @interface DeOpwocoTimoduleIphoneLineaproModule : TiModule 
 {
-    NSString *current_barcode;
-    NSString *current_tracks;
-    
     DTDevices *dtdev;
 }
 
