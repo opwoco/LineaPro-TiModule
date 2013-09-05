@@ -35,9 +35,11 @@ int beep1[]={1530,250};
 	// you *must* call the superclass
 	[super startup];
     
-    dtdev = [DTDevices sharedDevice];
-	[dtdev addDelegate:self];
-    [dtdev connect];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dtdev = [DTDevices sharedDevice];
+        [dtdev addDelegate:self];
+        [dtdev connect];
+    });
     
 	NSLog(@"[INFO] %@ loaded",self);
 }
