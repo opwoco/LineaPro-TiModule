@@ -1,7 +1,7 @@
 Linea Pro Titanium Module
 =========================
 
-Used SDK: ver 1.77 (*27. Februar 2013*)
+Used SDK: ver 1.77 *(27. Februar 2013)*
 
 
 USAGE
@@ -34,8 +34,14 @@ Methods
 -------
 
 ### connect()
+Connects to the device. This is just required to call if you used disconnect() before.  
+The module connects automatically on launch.
+
 ### disconnect()
-#### getBatteryLevel()
+Disconnect the current scan device.
+
+### getBatteryLevel()
+Returns a string telling how much the battery of the connected device is currently charged in percent.
 
 Events
 ------
