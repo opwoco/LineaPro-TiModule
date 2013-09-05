@@ -188,5 +188,32 @@ int beep1[]={1530,250};
     [dtdev barcodeSetScanBeep:TRUE volume:100 beepData:beepTone length:sizeof(beepTone) error:nil];
 }
 
+-(NSString *)getBatteryLevel:(id)args
+{
+    NSString *response;
+    
+    NSError *error=nil;
+    
+    int percent;
+    float voltage;
+    
+    if([dtdev getBatteryCapacity:&percent voltage:&voltage error:&error]){
+        response = [NSString stringWithFormat:@"%d%%",percent];
+    } else {
+        response = @"0";
+    }
+    
+    // TODO: add voltage to the response
+    
+    return response;
+}
+
+-(NSString *)checkBatteryLevel:(id)args
+{
+    // This is for the people who use the LineaPro Module by iampnelson
+    NSLog(@"[LINEA] checkBatteryLevel() is deprecated and will be removed in future versions");
+    return [self getBatteryLevel:args];
+}
+
 
 @end
