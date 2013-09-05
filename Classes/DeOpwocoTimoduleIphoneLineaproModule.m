@@ -108,21 +108,18 @@ int beep1[]={1530,250};
 		case CONN_DISCONNECTED:
             status = @"DISCONNECTED";
             break;
-            // [linea stopScan];
+            
 		case CONN_CONNECTING:
             status = @"CONNECTING";
-			NSLog(@"[LINEA] Linea connectionState=CONNECTING");
-			//[linea msStopScan];
             break;
 		case CONN_CONNECTED:
             status = @"CONNECTED";
             
-            NSLog(@"[LINEA] launching barcodeStartScan");
-            
             [dtdev barcodeSetScanMode:1 error:nil];
-			
-            NSLog(@"[LINEA] Linea connectionState=CONNECTED");
             [dtdev barcodeSetScanBeep:TRUE volume:100 beepData:beep1 length:sizeof(beep1) error:nil];
+            
+            [dtdev msEnable:nil];
+            
 			break;
 	}
     
