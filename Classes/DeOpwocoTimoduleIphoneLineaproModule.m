@@ -154,6 +154,9 @@ int beep1[]={1530,250};
         expirationYear = [NSString stringWithFormat:@"%@", [card valueForKey:@"expirationYear"]];
 	}
     
+    int sound[]={2730,150,0,30,2730,150};
+	[dtdev playSound:100 beepData:sound length:sizeof(sound) error:nil];
+    
     [self fireEvent:@"magneticCardSwiped" withObject:@{
         @"track1": track1,
         @"track2": track2,
