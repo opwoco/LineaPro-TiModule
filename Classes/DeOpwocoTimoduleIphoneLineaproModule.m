@@ -117,7 +117,7 @@ int beep1[]={1530,250};
 		case CONN_CONNECTED:
             status = @"CONNECTED";
                         
-            [dtdev barcodeSetScanMode:1 error:nil];
+            [dtdev barcodeSetScanMode:MODE_SINGLE_SCAN error:nil];
             [dtdev barcodeSetScanBeep:TRUE volume:100 beepData:beep1 length:sizeof(beep1) error:nil];
             
             [dtdev msEnable:nil];
