@@ -227,4 +227,9 @@ DEFINE_DEF_INT_PROP(MODE_MULTI_SCAN_NO_DUPLICATES, MODE_MULTI_SCAN_NO_DUPLICATES
 }
 
 
+-(void)setScanMode:(id)value
+{
+    [dtdev barcodeSetScanMode:[TiUtils intValue:value] error:nil];
+}
+
 @end
