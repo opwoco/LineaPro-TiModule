@@ -1,11 +1,14 @@
 Linea Pro Titanium Module
 =========================
 
-Used SDK: ver 1.77 *(27. Februar 2013)*
+Used SDK: ver 1.88 *(April 26th 2014)*
 
 
 USAGE
 -----
+You can find various versions of the compiled and ready to use module in the *dist* folder.
+Just drop the zip file into the root folder of you project and add the `de.opwoco.timodule.iphone.lineapro` module to your `tiapp.xml`
+
 To enable your app to support the Linea Pro or Infinea Tab Devices, you have to extend your Info.plist.  
 
 This can be done in the tiapp.xml
